@@ -1,0 +1,36 @@
+{% load static %}
+<head>
+  <link rel="stylesheet" href="{% static 'styles/getById.css' %}" />
+</head>
+<table class="container">
+  <tr>
+    <th>Username</th>
+    <th>FirstName</th>
+    <th>LastName</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Permissions</th>
+    <th>UserId</th>
+    <th>Height</th>
+    <th>Weight</th>
+    <th>Nickname</th>
+    <th>Bio</th>
+    <th>Blood Group</th>
+    <th>Created On</th>
+  </tr>
+  <tr>
+    <td>{{data.username}}</td>
+    <td>{{data.firstname}}</td>
+    <td>{{data.lastname}}</td>
+    <td>{{data.age}}</td>
+    <td>{{data.gender}}</td>
+    <td>{{data.permissionLevel}}</td>
+    <td>{{data.userId}}</td>
+    <td>{{data.height}}</td>
+    <td>{{data.weight}}</td>
+    <td>{{data.nickname}}</td>
+    <td>{{data.bio}}</td>
+    <td>{{data.bloodGroup}}</td>
+    <td>{{data.createdAt}}</td>
+  </tr>
+</table>

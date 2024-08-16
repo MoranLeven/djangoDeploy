@@ -1,0 +1,78 @@
+<!-- myapp/templates/myapp/mymodel_list.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyModel List</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/getById.css' %}" />
+  </head>
+  <body>
+    <h1>MyModel List</h1>
+    <table class="container">
+      <tr>
+        <th>Username</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Permissions</th>
+        <th>UserId</th>
+        <th>Height</th>
+        <th>Weight</th>
+        <th>Nickname</th>
+        <th>Bio</th>
+        <th>Blood Group</th>
+        <th>Operation</th>
+      </tr>
+      {% for data in userData %}
+      <tr>
+        <td>{{data.username}}</td>
+        <td>{{data.firstname}}</td>
+        <td>{{data.lastname}}</td>
+        <td>{{data.age}}</td>
+        <td>{{data.gender}}</td>
+        <td>{{data.permissionLevel}}</td>
+        <td>{{data.userId}}</td>
+        <td>{{data.height}}</td>
+        <td>{{data.weight}}</td>
+        <td>{{data.nickname}}</td>
+        <td>{{data.bio}}</td>
+        <td>{{data.bloodGroup}}</td>
+        <form
+          name="updateUser"
+          class="update-{{data.userId}}"
+          action="update"
+          method="GET">
+          <input type="hidden" name="userId" value="{{data.userId}}" />
+        </form>
+
+        <form
+          data-userID="{{data.userId}}"
+          class="delete-{{data.userId}}"
+          name="deleteUser"
+          action="delete"
+          method="GET"></form>
+
+        <td>
+          <select
+            class="operation_{{data.userId}}"
+            onchange="performOperation('{{data.userId}}')">
+            <option disabled selected>Operation⚙️</option>
+            <option value="update">Update🛠️</option>
+            <option value="delete">Delete🗑️</option>
+          </select>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+  <script>
+    function performOperation(className) {
+      var operation = this.event.target.value;
+      form = document.querySelector(`.${operation}-${className}`);
+      form.submit();
+      console.log(this.event.target.dataset);
+    }
+  </script>
+</html>

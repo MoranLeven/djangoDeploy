@@ -24,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "alksjfdoiasjfdlkjasfkj24k59879432jkljfadsuf8932riue"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get("DEBUG","true").lower == "true"
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -80,8 +80,8 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-# database_url = os.environ.get()
-# DATABASES["default"]  = dj_database_url.parse("postgresql://crud_yfh5_user:O3xNIBlorpulYhRanISkZ5QLnnKsmJ3A@dpg-cqvimmbtq21c7382ndq0-a.oregon-postgres.render.com/crud_yfh5")
+database_url = os.environ.get()
+DATABASES["default"]  = dj_database_url.parse(database_url)
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',  # Use the MySQL backend
